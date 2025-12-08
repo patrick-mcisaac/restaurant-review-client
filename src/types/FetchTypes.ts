@@ -1,4 +1,4 @@
-import { RestaurantType } from "./RestaurantTypes"
+
 
 export type FetchOptionType = {
     method: string,
@@ -12,5 +12,5 @@ export type FetchOptionType = {
 
 export type CheckErrorType = (res: Response) => Response | string
 
-export type CheckErrorJsonType = (res: Response) => Promise<RestaurantType[]> | Promise<Response>
+
 

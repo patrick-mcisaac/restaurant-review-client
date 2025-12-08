@@ -1,12 +1,28 @@
 'use client'
 import Button from '@/_components/form/Button'
 import { Input } from '@/_components/form/Input'
+import {  useAuth } from '@/app/AuthProvider'
+import { login } from '@/data/auth_requests'
 import { LoginType } from '@/types/AuthType'
+import { useMutation } from '@tanstack/react-query'
+import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
 
 
 export default function Page() {
+
+  const {setToken} = useAuth()
+  const router = useRouter()
+
+  const {data, mutate} = useMutation({
+    mutationFn: (userLogin: LoginType) => login(userLogin),
+    onSuccess:(data) => {
+      setToken(data.token)
+      localStorage.setItem('token', data.token)
+      router.replace('/')
+    }
+  })
 
   const [userLogin, setUserLogin] = useState<LoginType>({
     username: '',
@@ -27,13 +43,18 @@ export default function Page() {
 
     setUserLogin(copyUser)
   }
+
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault()
+    mutate(userLogin)
+  }
   return (
     <form
     className='flex flex-col w-50 md:mt-40 m-auto gap-10 items-center mt-30'
     >
         <Input type='text' placeholder='username' value={userLogin.username} onChange={handleChange} name='username' />
         <Input type='password' placeholder='password' value={userLogin.password} onChange={handleChange} name='password' />
-        <Button text='Login' />
+        <Button handleClick={handleClick} text='Login' />
     </form>
   )
 }

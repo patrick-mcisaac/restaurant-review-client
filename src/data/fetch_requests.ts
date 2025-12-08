@@ -1,4 +1,4 @@
-import { CheckErrorJsonType, CheckErrorType, FetchOptionType } from "@/types/FetchTypes"
+import {  CheckErrorType, FetchOptionType } from "@/types/FetchTypes"
 
 const API_URL = 'http://localhost:8000'
 
@@ -9,7 +9,7 @@ const checkError: CheckErrorType = (res)=> {
     return res
 }
 
-const checkErrorJson: CheckErrorJsonType = (res) => {
+const checkErrorJson = <T> (res: Response) => {
     if(!res.ok){
         throw Error(res.status.toString())
     }
@@ -17,7 +17,7 @@ const checkErrorJson: CheckErrorJsonType = (res) => {
 }
 
 
-export const fetchWithResponse = (resource: string, options: FetchOptionType) => fetch(`${API_URL}/${resource}`, options).then(checkErrorJson)
+export const fetchWithResponse =  (resource: string, options: FetchOptionType) => fetch(`${API_URL}/${resource}`, options).then(checkErrorJson)
 
-export const fetchWithoutResponse = (resource: string, options: FetchOptionType) => fetch(`${API_URL}/${resource}`, options).then(checkError)
+export const fetchWithoutResponse =  (resource: string, options: FetchOptionType) => fetch(`${API_URL}/${resource}`, options).then(checkError)
 
