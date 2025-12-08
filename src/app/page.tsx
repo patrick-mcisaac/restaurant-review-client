@@ -1,6 +1,6 @@
 export default function Home() {
     return (
-        <div className="p-30 flex gap-20 items-center flex-col">
+        <div className="p-30 text-center flex gap-20 items-center flex-col">
             <h1 className="text-foreground text-5xl tracking-wider">
                 Restaurant Reviews
             </h1>

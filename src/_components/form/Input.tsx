@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 
 type InputProps = {
@@ -8,6 +9,7 @@ type InputProps = {
 
 export const Input = ({type, placeholder, name} : InputProps) => {
   return (
-    <input type={type} placeholder={placeholder} name={name} />
+    <input
+    className='bg-midground text-foreground rounded-lg p-[.1rem_1rem]' type={type} placeholder={placeholder} name={name} />
   )
 }

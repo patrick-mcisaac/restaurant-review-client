@@ -1,5 +1,5 @@
 import React from 'react'
-import { Input } from './Input'
+import { Input } from '../form/Input'
 import { Select } from './Select'
 
 export const Searchbar = () => {
