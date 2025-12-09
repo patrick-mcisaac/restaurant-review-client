@@ -1,5 +1,5 @@
-
 'use client'
+
 import Button from '@/_components/form/Button'
 import { Input } from '@/_components/form/Input'
 import { useAuth } from '@/app/AuthProvider'
@@ -67,15 +67,15 @@ export default function Page() {
     <form
     className='flex flex-col w-50 md:mt-30 m-auto gap-10 items-center mt-20'
     >
-      <Input type='text' placeholder='First Name' value={userRegister.first_name} onChange={handleChange} name='first_name' />
+      <Input label={true} type='text' placeholder='First Name' value={userRegister.first_name} onChange={handleChange} name='first_name' />
 
-      <Input type='text' placeholder='Last Name' value={userRegister.last_name} onChange={handleChange} name='last_name' />
+      <Input label={true} type='text' placeholder='Last Name' value={userRegister.last_name} onChange={handleChange} name='last_name' />
 
-      <Input type='email' placeholder='Email' value={userRegister.email} onChange={handleChange} name='email' />
+      <Input label={true} type='email' placeholder='Email' value={userRegister.email} onChange={handleChange} name='email' />
 
-      <Input type='text' placeholder='username' value={userRegister.username} onChange={handleChange} name='username' />
+      <Input label={true} type='text' placeholder='username' value={userRegister.username} onChange={handleChange} name='username' />
 
-      <Input type='password' placeholder='password' value={userRegister.password} onChange={handleChange} name='password' />
+      <Input label={true} type='password' placeholder='password' value={userRegister.password} onChange={handleChange} name='password' />
       <Button handleClick={handleClick} text='Register' />
     </form>
   )

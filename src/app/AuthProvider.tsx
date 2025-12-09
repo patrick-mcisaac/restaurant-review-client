@@ -22,7 +22,7 @@ export const AuthProvider = ({children}: {children: React.ReactNode}) => {
     useEffect(() => {
         const authPaths = ['/login', '/register']
 
-        if(!authPaths.includes(pathname) && token === ''){
+        if(!authPaths.includes(pathname) && !localStorage.getItem('token')){
             router.replace('/login')
         }
     },[token, pathname])

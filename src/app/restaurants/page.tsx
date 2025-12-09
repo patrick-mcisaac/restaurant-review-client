@@ -16,7 +16,7 @@ export default function Page() {
     return (
       <div className=''>
         <h1 className='text-foreground text-center mt-10 text-4xl md:text-6xl font-semibold tracking-wider'>Our Restaurants</h1>
-        <div className='flex justify-evenly m-10'>
+        <div className='flex md:items-end md:flex-row flex-col items-center gap-5 md:justify-around m-10'>
           <Searchbar />
         </div>
         <div className='flex justify-center'>

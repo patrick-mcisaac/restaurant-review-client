@@ -52,8 +52,8 @@ export default function Page() {
     <form
     className='flex flex-col w-50 md:mt-40 m-auto gap-10 items-center mt-30'
     >
-        <Input type='text' placeholder='username' value={userLogin.username} onChange={handleChange} name='username' />
-        <Input type='password' placeholder='password' value={userLogin.password} onChange={handleChange} name='password' />
+        <Input label={true} type='text' placeholder='username' value={userLogin.username} onChange={handleChange} name='username' />
+        <Input label={true} type='password' placeholder='password' value={userLogin.password} onChange={handleChange} name='password' />
         <Button handleClick={handleClick} text='Login' />
     </form>
   )
