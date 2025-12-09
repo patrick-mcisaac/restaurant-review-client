@@ -2,6 +2,7 @@
 import Details from '@/_components/restaurants/Details'
 import { getRestaurantById } from '@/data/restaurant_fetches'
 import { useQuery } from '@tanstack/react-query'
+import Image from 'next/image'
 
 import React, { use } from 'react'
 
@@ -15,27 +16,48 @@ export default function Page({params}: {params:Promise<{id: string}>}) {
     })
     
   return isSuccess? (
-    <div>
-        <h1>{restaurant.name}</h1>
-        <p>{restaurant.description}</p>
+    <div className='flex p-10 flex-col items-center'>
+        <h1 className='text-6xl tracking-wider font-semibold'>{restaurant.name}</h1>
+        <section className='flex h-140 w-full items-start justify-around'>
 
-        {restaurant.locations.map(location => {
-            return <Details 
-            key={location.id} 
-            title='Address' 
-            city={location.location.city} 
-            info={location.address} />
-        }
-    )}
-        
-        {restaurant.locations.map(location => {
-            return <Details 
-            key={location.id} 
-            title='Hours' 
-            city={location.location.city} 
-            info={location.hours} />
-        }
-    )}
+            <div className='w-100 h-100 mt-15 self overflow-hidden rounded-lg'>
+                <img src={`http://localhost:8000${restaurant.image}`} alt={restaurant.name} className='rounded-lg w-full relative' />
+            </div>
+            <p className='mt-40'>{restaurant.description}</p>
+
+        </section>
+        <section className='flex items-start  justify-around w-full'>
+            <section>
+
+            <h2 className='text-2xl my-2 font-semibold tracking-wider'>Locations</h2>
+            <div className='flex flex-wrap gap-20'>
+
+
+            {restaurant.locations.map(location => {
+                return <Details 
+                key={location.id} 
+                city={location.location.city} 
+                info={location.address} />
+            }
+        )}
+        </div>
+            </section>
+            <section>
+
+
+                <h2 className='text-2xl my-2 font-semibold tracking-wider'>Hours</h2>
+                 <div className='flex flex-wrap gap-20'>
+
+                {restaurant.locations.map(location => {
+                    return <Details 
+                    key={location.id} 
+                    city={location.location.city} 
+                    info={location.hours} />
+                }
+            )}
+            </div>
+        </section>
+    </section>
 
     </div>
   ): ''

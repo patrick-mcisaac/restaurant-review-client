@@ -8,4 +8,5 @@ export type RestaurantType = {
     average_ratings: number
     restaurant_reviews: ReviewType[]
     locations: RestaurantLocationType[]
+    image: string
 }

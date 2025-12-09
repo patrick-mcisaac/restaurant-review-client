@@ -5,14 +5,14 @@ import React from 'react'
 type HoursProps = {
     city: string
     info: string
-    title: string
+  
 }
 
-export default function Details({city, info, title} : HoursProps) {
+export default function Details({city, info} : HoursProps) {
   return (
-    <div>
-        <h1>{city}</h1>
-        <h2>{title}</h2>
+    <div className='flex mt-5 flex-col'>
+        <h1 className='text-2xl '>{city}</h1>
+      
         {info.split(',').map(i => <p key={i}>{i}</p>)}
         
     </div>
