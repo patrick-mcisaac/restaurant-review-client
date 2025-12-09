@@ -3,7 +3,7 @@
 :root {
     --background: #ededed;
     --foreground: #1e1e1e;
-    
+    --light: #d4d4d2
     
 }
 
@@ -12,6 +12,7 @@
     --color-foreground: var(--foreground);
 
     --color-midground: var(--midground);
+    --color-light: var(--light);
 
     --color-dark-black: #111;
 
@@ -24,6 +25,7 @@
         --background: #1e1e1e;
         --foreground: #ededed;
         --midground: #2e2e2e;
+        --light: #d4d2d2;
     }
 }
 
