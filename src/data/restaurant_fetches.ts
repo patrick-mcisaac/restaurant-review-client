@@ -7,7 +7,16 @@ export const getRestaurants = ():Promise<RestaurantType[]> => {
     return fetchWithResponse(`restaurants`, {
         method: "GET",
         headers: {
-            Authorization: `Token a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0`
+            Authorization: `Token ${localStorage.getItem('token')}`
+        }
+    })
+}
+
+export const getRestaurantById = (id:string):Promise<RestaurantType> => {
+    return fetchWithResponse(`restaurants/${id}`, {
+        method: "GET",
+        headers: {
+            Authorization: `Token ${localStorage.getItem('token')}`
         }
     })
 }
