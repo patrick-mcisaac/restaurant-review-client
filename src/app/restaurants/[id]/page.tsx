@@ -1,24 +1,59 @@
 'use client'
 import Button from '@/_components/Button'
 import Details from '@/_components/restaurants/Details'
+import { setRating } from '@/data/rating_requests'
 import { getRestaurantById } from '@/data/restaurant_fetches'
-import { useQuery } from '@tanstack/react-query'
+import { RatingType } from '@/types/RatingType'
+import { QueryClient, useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { Preahvihear } from 'next/font/google'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
-import React, { use } from 'react'
+import React, { use, useEffect, useState } from 'react'
 import ReactStars from "react-stars"
 
 
 export default function Page({params}: {params:Promise<{id: string}>}) {
 
     const router = useRouter()
-
+    const queryClient = useQueryClient()
     const {id} = use(params)
+
+    const [ratingInfo, setRatingInfo] = useState<RatingType>({
+        score: 0,
+        restaurant: parseInt(id)
+    })
+
+    // const [averageRating, setAverageRating] = useState(0)
+
+    const {data: new_rating, mutate} = useMutation({
+        mutationFn: (ratingInfo:RatingType) =>  setRating(ratingInfo),
+        onSuccess: () => {
+            queryClient.invalidateQueries()
+            queryClient.refetchQueries({queryKey: ['restaurant', id]})
+        }
+    })
     
     const {data: restaurant,  isSuccess} = useQuery({
         queryKey: ['restaurant', id],
-        queryFn: () => getRestaurantById(id)
+        queryFn: () => getRestaurantById(id),
+        
     })
+    // useEffect(() => {
+    //     if(isSuccess){
+    //         setAverageRating(restaurant.average_ratings)
+    //     }
+    // },[isSuccess, restaurant])
+
+    const handleRatings =  (data: RatingType) => {
+        mutate(data)
+        setRatingInfo({...ratingInfo, score: 0})
+
+    }
+
+    const handleRatingChange =  (e: number) => {
+        const copyRating = {...ratingInfo, score: e}
+        setRatingInfo(copyRating)
+    }
     
   return isSuccess? (
     <div className='flex p-10 flex-col items-center'>
@@ -34,8 +69,18 @@ export default function Page({params}: {params:Promise<{id: string}>}) {
                     }
                 } width={350} height={0} />
                 <div className='mt-5 flex items-center justify-between'>
+                    
+                    <div className='flex gap-3 items-center'>
 
-                    <ReactStars size={24} edit={true} value={restaurant.average_ratings} />
+                        <ReactStars size={24} edit={true}
+                        onChange={handleRatingChange}
+                        value={ratingInfo.score? ratingInfo.score : restaurant.average_ratings} />
+
+                        <Button text='Rate' handleClick={() => handleRatings(ratingInfo)}/>
+
+                    </div>
+
+                     
                     <Button text='Review' handleClick={() => {router.push(`/restaurants/${id}/add_review`)}} />
                 </div>
             </div>
