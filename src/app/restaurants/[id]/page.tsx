@@ -5,8 +5,9 @@ import { getRestaurantById } from '@/data/restaurant_fetches'
 import { useQuery } from '@tanstack/react-query'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
-
 import React, { use } from 'react'
+import ReactStars from "react-stars"
+
 
 export default function Page({params}: {params:Promise<{id: string}>}) {
 
@@ -32,7 +33,11 @@ export default function Page({params}: {params:Promise<{id: string}>}) {
                         height: '100%'
                     }
                 } width={350} height={0} />
-                <Button text='Review' handleClick={() => {router.push(`/restaurants/${id}/add_review`)}} />
+                <div className='mt-5 flex items-center justify-between'>
+
+                    <ReactStars size={24} edit={true} value={restaurant.average_ratings} />
+                    <Button text='Review' handleClick={() => {router.push(`/restaurants/${id}/add_review`)}} />
+                </div>
             </div>
             <p className='mt-40'>{restaurant.description}</p>
 
