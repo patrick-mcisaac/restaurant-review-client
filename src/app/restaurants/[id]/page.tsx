@@ -1,12 +1,16 @@
 'use client'
+import Button from '@/_components/Button'
 import Details from '@/_components/restaurants/Details'
 import { getRestaurantById } from '@/data/restaurant_fetches'
 import { useQuery } from '@tanstack/react-query'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 
 import React, { use } from 'react'
 
 export default function Page({params}: {params:Promise<{id: string}>}) {
+
+    const router = useRouter()
 
     const {id} = use(params)
     
@@ -20,7 +24,7 @@ export default function Page({params}: {params:Promise<{id: string}>}) {
         <h1 className='text-6xl tracking-wider font-semibold'>{restaurant.name}</h1>
         <section className='flex h-140 w-full items-start justify-around'>
 
-            <div className='w-100 h-100 mt-15 self overflow-hidden rounded-lg'>
+            <div className='w-100 h-100 mt-15 '>
                 <Image unoptimized={true} alt={restaurant.name} src={`http://localhost:8000${restaurant.image}`} style={
                     {
                         borderRadius: '1rem',
@@ -28,6 +32,7 @@ export default function Page({params}: {params:Promise<{id: string}>}) {
                         height: '100%'
                     }
                 } width={350} height={0} />
+                <Button text='Review' handleClick={() => {router.push(`/restaurants/${id}/add_review`)}} />
             </div>
             <p className='mt-40'>{restaurant.description}</p>
 
@@ -64,6 +69,9 @@ export default function Page({params}: {params:Promise<{id: string}>}) {
             </div>
         </section>
     </section>
+    <div className='flex justify-end w-full absolute bottom-5 pr-15'>
+        <Button text='Our Reviews'  handleClick={() => {router.push(`/restaurants/${id}/reviews`)}} />
+    </div>
 
     </div>
   ): ''
