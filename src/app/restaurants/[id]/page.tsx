@@ -21,7 +21,13 @@ export default function Page({params}: {params:Promise<{id: string}>}) {
         <section className='flex h-140 w-full items-start justify-around'>
 
             <div className='w-100 h-100 mt-15 self overflow-hidden rounded-lg'>
-                <img src={`http://localhost:8000${restaurant.image}`} alt={restaurant.name} className='rounded-lg w-full relative' />
+                <Image unoptimized={true} alt={restaurant.name} src={`http://localhost:8000${restaurant.image}`} style={
+                    {
+                        borderRadius: '1rem',
+                        width: '100%',
+                        height: '100%'
+                    }
+                } width={350} height={0} />
             </div>
             <p className='mt-40'>{restaurant.description}</p>
 

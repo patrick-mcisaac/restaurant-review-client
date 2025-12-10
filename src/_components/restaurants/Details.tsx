@@ -1,5 +1,4 @@
-import { RestaurantLocationType } from '@/types/LocationTypes'
-import { getLocationOrigin } from 'next/dist/shared/lib/utils'
+
 import React from 'react'
 
 type HoursProps = {
