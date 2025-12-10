@@ -4,11 +4,10 @@ import Details from '@/_components/restaurants/Details'
 import { setRating } from '@/data/rating_requests'
 import { getRestaurantById } from '@/data/restaurant_fetches'
 import { RatingType } from '@/types/RatingType'
-import { QueryClient, useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { Preahvihear } from 'next/font/google'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
-import React, { use, useEffect, useState } from 'react'
+import React, { use,  useState } from 'react'
 import ReactStars from "react-stars"
 
 
@@ -23,7 +22,6 @@ export default function Page({params}: {params:Promise<{id: string}>}) {
         restaurant: parseInt(id)
     })
 
-    // const [averageRating, setAverageRating] = useState(0)
 
     const {data: new_rating, mutate} = useMutation({
         mutationFn: (ratingInfo:RatingType) =>  setRating(ratingInfo),
@@ -38,11 +36,6 @@ export default function Page({params}: {params:Promise<{id: string}>}) {
         queryFn: () => getRestaurantById(id),
         
     })
-    // useEffect(() => {
-    //     if(isSuccess){
-    //         setAverageRating(restaurant.average_ratings)
-    //     }
-    // },[isSuccess, restaurant])
 
     const handleRatings =  (data: RatingType) => {
         mutate(data)
