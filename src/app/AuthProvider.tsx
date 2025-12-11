@@ -9,6 +9,7 @@ export const AuthContext = createContext<AuthProviderType | undefined>(undefined
 
 export const AuthProvider = ({children}: {children: React.ReactNode}) => {
     const [token, setToken] = useState<string>('')
+    // const [currentUser, setCurrentUser] = useState()
     const router = useRouter()
     const pathname = usePathname()
 
@@ -26,6 +27,8 @@ export const AuthProvider = ({children}: {children: React.ReactNode}) => {
             router.replace('/login')
         }
     },[token, pathname])
+
+    // const getUser = () => {}
 
   
 

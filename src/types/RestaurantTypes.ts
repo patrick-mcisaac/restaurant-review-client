@@ -9,4 +9,5 @@ export type RestaurantType = {
     restaurant_reviews: ReviewType[]
     locations: RestaurantLocationType[]
     image: string
+    user_score: number
 }

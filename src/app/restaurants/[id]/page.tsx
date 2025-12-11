@@ -8,8 +8,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import React, { use,  useState } from 'react'
-import ReactStars from "react-stars"
-
+import { Rating } from 'react-simple-star-rating'
 
 export default function Page({params}: {params:Promise<{id: string}>}) {
 
@@ -64,10 +63,14 @@ export default function Page({params}: {params:Promise<{id: string}>}) {
                 <div className='mt-5 flex items-center justify-between'>
                     
                     <div className='flex gap-3 items-center'>
+                        
 
-                        <ReactStars size={24} edit={true}
-                        onChange={handleRatingChange}
-                        value={ratingInfo.score? ratingInfo.score : restaurant.average_ratings} />
+                        <Rating
+                        onClick={handleRatingChange}
+                        SVGclassName='inline-block'
+                        size={24}
+                        initialValue={restaurant.user_score} />
+                       
 
                         <Button text='Rate' handleClick={() => handleRatings(ratingInfo)}/>
 
