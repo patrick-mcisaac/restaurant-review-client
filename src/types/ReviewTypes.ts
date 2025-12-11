@@ -3,4 +3,5 @@ export type ReviewType = {
     review: string
     user: number
     restaurant_location: number
+    restaurant: number
 }
