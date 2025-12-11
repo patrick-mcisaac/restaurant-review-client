@@ -2,11 +2,39 @@
 import Button from '@/_components/Button'
 import TextArea from '@/_components/form/TextArea'
 import { Select } from '@/_components/searchbars/Select'
+import { getRestaurantLocations } from '@/data/location_requests'
+import { useQuery } from '@tanstack/react-query'
+import { useParams } from 'next/navigation'
 import React, { useState } from 'react'
 
 export default function Page() {
 
-    const [reviewText, setReviewText] = useState<string>('')
+    const {id} = useParams()
+    const [review, setReview] = useState({
+        review: '',
+        restaurant: id,
+        location: 0
+    })
+
+    const {data: locations, isSuccess} = useQuery({
+        queryKey: ['restaurantLocation', id],
+        queryFn: () => getRestaurantLocations(id)
+    })
+
+    const handleChange = (e:React.ChangeEvent<HTMLSelectElement |HTMLTextAreaElement>) => {
+        const name = e.target.name
+        const value = e.target.value
+        switch (name){
+            case 'review':
+                setReview({...review, review: value})
+                break;
+            case 'location':
+                setReview({...review, location: parseInt(value)})
+                break;
+            default:
+                break;
+        }
+    }
 
     const handleClick= () => {
        
@@ -14,15 +42,16 @@ export default function Page() {
   return (
     <form className='flex  flex-col gap-6 md:gap-10 md:mt-10 p-5 mt-5 justify-start'>
         <h1 className='text-center text-5xl'>Review</h1>
+        {isSuccess?
+        
         <fieldset className='flex justify-end'>
-
-            <Select name='location' locations={''}/>
+            <Select handleChange={handleChange} name='location' locations={locations}
+            className='text-background bg-foreground p-1 rounded-lg cursor-pointer' />
         </fieldset>
+        : ''}
         <fieldset className='flex  justify-center'>
 
-            <TextArea handleChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
-                setReviewText(e.target.value)
-            }} value={reviewText} className='bg-light-grey lg:h-120 lg:w-200 text-foreground md:h-120 h-75 w-full'  />
+            <TextArea name='review' handleChange={handleChange} value={review.review} className='bg-light-grey lg:h-120 lg:w-200 text-foreground md:h-120 h-75 w-full'  />
         </fieldset>
         <Button className='mt-10 lg:relative lg:w-200 w-full self-center  md:absolute md:bottom-10 md:w-[90%] ' text='Submit' preventDefault={true} handleClick={handleClick} />
     </form>

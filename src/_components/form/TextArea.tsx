@@ -5,10 +5,11 @@ type TextAreaProps = {
     className: string,
     value: string,
     handleChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void
+    name: string
 }
 
-export default function TextArea({ className, value, handleChange } : TextAreaProps) {
+export default function TextArea({ className, value, handleChange, name } : TextAreaProps) {
   return (
-    <textarea className={`${className}`} value={value} onChange={handleChange} />
+    <textarea name={name} className={`${className}`} value={value} onChange={handleChange} />
   )
 }
