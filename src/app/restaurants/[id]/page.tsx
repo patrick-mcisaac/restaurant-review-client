@@ -25,8 +25,10 @@ export default function Page({params}: {params:Promise<{id: string}>}) {
     const {data: new_rating, mutate} = useMutation({
         mutationFn: (ratingInfo:RatingType) =>  setRating(ratingInfo),
         onSuccess: () => {
-            queryClient.invalidateQueries()
-            queryClient.refetchQueries({queryKey: ['restaurant', id]})
+            queryClient.invalidateQueries({queryKey: ['restaurants']})
+            queryClient.invalidateQueries({queryKey: ['restaurant', id]})
+            // might add this back in if i want to show current average rating on this page
+            // queryClient.refetchQueries({queryKey: ['restaurant', id]})
         }
     })
     
@@ -38,7 +40,6 @@ export default function Page({params}: {params:Promise<{id: string}>}) {
 
     const handleRatings =  (data: RatingType) => {
         mutate(data)
-        setRatingInfo({...ratingInfo, score: 0})
 
     }
 
@@ -64,7 +65,6 @@ export default function Page({params}: {params:Promise<{id: string}>}) {
                     
                     <div className='flex gap-3 items-center'>
                         
-
                         <Rating
                         onClick={handleRatingChange}
                         SVGclassName='inline-block'
