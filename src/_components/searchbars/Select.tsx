@@ -7,11 +7,12 @@ type SelectProps = {
     locations: LocationType[]
     className?: string
     handleChange: (e: React.ChangeEvent<HTMLSelectElement | HTMLTextAreaElement>) => void
+    value?: number
 }
 
-export const Select = ({name, locations, className, handleChange} : SelectProps) => {
+export const Select = ({name, locations, className, handleChange, value} : SelectProps) => {
   return (
-    <select onChange={handleChange} className={`${className}`} name={name} >
+    <select value={value} onChange={handleChange} className={`${className}`} name={name} >
         <option value={0}>Select an option</option>
         {
            locations && locations.map(l => <Options location={l} key={l.id} />)

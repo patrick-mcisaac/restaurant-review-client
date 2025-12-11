@@ -3,7 +3,10 @@ import { ParamValue } from "next/dist/server/request/params"
 export type ReviewType = {
     id: number
     review: string
-    restaurant_location: number
+    restaurant_location: {
+        id: number
+        city: string
+    }
     restaurant: {
         id: number,
         name: string

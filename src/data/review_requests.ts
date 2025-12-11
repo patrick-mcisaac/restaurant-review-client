@@ -21,3 +21,12 @@ export const createReview = (data: NewReviewType) => {
         body: JSON.stringify(data)
     })
 }
+
+export const getReviewById = (id: ParamValue) => {
+    return fetchWithResponse(`reviews/${id}`, {
+        method: 'GET',
+        headers: {
+            'Authorization': `Token ${localStorage.getItem('token')}`
+        }
+    })
+}
