@@ -1,7 +1,14 @@
 export type ReviewType = {
     id: number
     review: string
-    user: number
     restaurant_location: number
-    restaurant: number
+    restaurant: {
+        id: number,
+        name: string
+    }
+    user: {
+        username: string
+    }
+    is_owner: boolean
+
 }
