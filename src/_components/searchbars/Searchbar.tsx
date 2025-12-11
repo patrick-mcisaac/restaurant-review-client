@@ -24,7 +24,7 @@ export const Searchbar = () => {
     <>
       <Input onChange={handleSearch} value='' label={false} type='text' placeholder='search' name='search' />
       {isSuccess?
-      <Select handleChange={handleChange} name='locations' locations={locations} />
+      <Select className='text-foreground bg-light-grey py-1 px-3 rounded-lg cursor-pointer' handleChange={handleChange} name='locations' locations={locations} />
       : ''
       }
     </>

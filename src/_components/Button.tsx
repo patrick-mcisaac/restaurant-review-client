@@ -10,7 +10,7 @@ type ButtonProps = {
 
 export default function Button({text, handleClick, className, preventDefault} : ButtonProps) {
   return (
-    <button className={`${className} button cursor-pointer hover:scale-105 transition`} onClick={(e) => {
+    <button className={`${className} button cursor-pointer  transition`} onClick={(e) => {
       if(preventDefault){
         e.preventDefault()
       }

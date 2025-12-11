@@ -3,8 +3,9 @@ import Button from '@/_components/Button'
 import TextArea from '@/_components/form/TextArea'
 import { Select } from '@/_components/searchbars/Select'
 import { getRestaurantLocations } from '@/data/location_requests'
-import { useQuery } from '@tanstack/react-query'
-import { useParams } from 'next/navigation'
+import { createReview } from '@/data/review_requests'
+import { useMutation, useQuery } from '@tanstack/react-query'
+import { useParams, useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 
 export default function Page() {
@@ -16,9 +17,18 @@ export default function Page() {
         location: 0
     })
 
+    const router = useRouter()
+
     const {data: locations, isSuccess} = useQuery({
         queryKey: ['restaurantLocation', id],
         queryFn: () => getRestaurantLocations(id)
+    })
+
+    const {data, mutate} = useMutation({
+        mutationFn:() => createReview(review),
+        onSuccess: () => {
+            router.replace(`/restaurants/${id}/reviews`)
+        }
     })
 
     const handleChange = (e:React.ChangeEvent<HTMLSelectElement |HTMLTextAreaElement>) => {
@@ -37,7 +47,12 @@ export default function Page() {
     }
 
     const handleClick= () => {
-       
+       if(review.location > 0 && review.review !== ''){
+        mutate()
+       }
+       else{
+        window.alert('Please fill out the form')
+       }
     }
   return (
     <form className='flex  flex-col gap-6 md:gap-10 md:mt-10 p-5 mt-5 justify-start'>
@@ -46,7 +61,7 @@ export default function Page() {
         
         <fieldset className='flex justify-end'>
             <Select handleChange={handleChange} name='location' locations={locations}
-            className='text-background bg-foreground p-1 rounded-lg cursor-pointer' />
+            className='text-foreground bg-light-grey py-1 px-3  rounded-lg cursor-pointer' />
         </fieldset>
         : ''}
         <fieldset className='flex  justify-center'>

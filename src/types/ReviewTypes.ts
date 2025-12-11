@@ -1,3 +1,5 @@
+import { ParamValue } from "next/dist/server/request/params"
+
 export type ReviewType = {
     id: number
     review: string
@@ -11,4 +13,10 @@ export type ReviewType = {
     }
     is_owner: boolean
 
+}
+
+export type NewReviewType = {
+    review: string
+    restaurant: ParamValue
+    location: number
 }
