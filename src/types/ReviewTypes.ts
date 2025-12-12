@@ -5,7 +5,7 @@ export type ReviewType = {
     review: string
     restaurant_location: {
         id: number
-        city: string
+        name: string
     }
     restaurant: {
         id: number,

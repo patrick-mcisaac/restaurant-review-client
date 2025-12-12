@@ -1,11 +1,12 @@
 export type LocationType ={
     id: number
-    city: string
+    name: string
 }
 
 export type RestaurantLocationType = {
     address: string
     hours: string
     id: number
-    location: LocationType
+    city: LocationType
+    location_average_rating: number
 }

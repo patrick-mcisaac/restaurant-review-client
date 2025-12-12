@@ -8,7 +8,7 @@ type OptionProps = {
 export const Options = ({location} : OptionProps) => {
   return (
     <option value={location.id}>
-        {location.city}
+        {location.name}
     </option>
   )
 }

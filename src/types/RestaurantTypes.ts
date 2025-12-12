@@ -5,9 +5,9 @@ export type RestaurantType = {
     id: number
     name: string
     description: string
+    image: string
     average_ratings: number
     restaurant_reviews: ReviewType[]
     locations: RestaurantLocationType[]
-    image: string
     user_score: number
 }

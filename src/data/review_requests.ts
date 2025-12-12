@@ -30,3 +30,12 @@ export const getReviewById = (id: ParamValue) => {
         }
     })
 }
+
+export const deleteReview = (id: number) => {
+    return fetchWithoutResponse(`reviews/${id}`,{
+        method: 'DELETE',
+        headers: {
+            'Authorization': `Token ${localStorage.getItem('token')}`
+        }
+    })
+}

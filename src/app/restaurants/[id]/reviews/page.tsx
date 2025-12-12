@@ -14,7 +14,7 @@ export default function Page() {
     })
   return isSuccess?(
     <div className='flex gap-10 justify-start flex-col p-10'>
-        {reviews.map((review: ReviewType) => <ReviewList  key={review.id} id={id} review={review}/>)}
+        {reviews.map((review: ReviewType) => <ReviewList  key={review.id} id={id} reviewId={review.id} review={review}/>)}
     </div>
   ) : ''
 }

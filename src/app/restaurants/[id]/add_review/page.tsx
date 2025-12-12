@@ -7,6 +7,8 @@ import { createReview } from '@/data/review_requests'
 import { useMutation, useQuery } from '@tanstack/react-query'
 import { useParams, useRouter } from 'next/navigation'
 import React, { useState } from 'react'
+import { Rating } from 'react-simple-star-rating'
+
 
 export default function Page() {
 
@@ -14,7 +16,8 @@ export default function Page() {
     const [review, setReview] = useState({
         review: '',
         restaurant: id,
-        location: 0
+        location: 0,
+        score: 0
     })
 
     const router = useRouter()
@@ -54,6 +57,10 @@ export default function Page() {
         window.alert('Please fill out the form')
        }
     }
+
+    const handleRatingChange =  (e: number) => {
+        setReview({...review, score: e})
+    }
   return (
     <form className='flex  flex-col gap-6 md:gap-10 md:mt-10 p-5 mt-5 justify-start'>
         <h1 className='text-center text-5xl'>Review</h1>
@@ -67,6 +74,13 @@ export default function Page() {
         <fieldset className='flex  justify-center'>
 
             <TextArea name='review' handleChange={handleChange} value={review.review} className='bg-light-grey lg:h-120 lg:w-200 text-foreground md:h-120 h-75 w-full'  />
+        </fieldset>
+        <fieldset className='flex items-center justify-center'>
+            <Rating
+                onClick={handleRatingChange}
+                SVGclassName='inline-block'
+                size={24}
+                initialValue={0} />
         </fieldset>
         <Button className='mt-10 lg:relative lg:w-200 w-full self-center  md:absolute md:bottom-10 md:w-[90%] ' text='Submit' preventDefault={true} handleClick={handleClick} />
     </form>
