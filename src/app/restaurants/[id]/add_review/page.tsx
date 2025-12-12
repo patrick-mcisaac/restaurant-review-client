@@ -14,6 +14,7 @@ export default function Page() {
 
     const {id} = useParams()
     const [review, setReview] = useState({
+        
         review: '',
         restaurant: id,
         location: 0,

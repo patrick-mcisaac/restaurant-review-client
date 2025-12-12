@@ -20,6 +20,12 @@ export type ReviewType = {
 
 export type NewReviewType = {
     review: string
-    restaurant: ParamValue
-    location: number
+    restaurant: ParamValue | number
+    location?: number
+    score: number
+}
+
+export type UpdateReviewType = NewReviewType & {
+    id: number
+    restaurant_location: number
 }
