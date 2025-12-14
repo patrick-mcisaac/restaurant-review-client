@@ -16,7 +16,8 @@ export default function Page() {
             id: Number(id),
             review: '',
             restaurant_location: 0,
-            score: 0
+            score: 0,
+            restaurant: 0
         })
 
     const {data: old_review, isSuccess} = useQuery({
@@ -45,7 +46,8 @@ export default function Page() {
                 id: parseInt(old_review.id),
                 review: old_review.review,
                 score: old_review.score,
-                restaurant_location: old_review.restaurant_location.id
+                restaurant_location: old_review.restaurant_location.id,
+                restaurant: old_review.restaurant.id
             })
         }
     },[ old_review])
