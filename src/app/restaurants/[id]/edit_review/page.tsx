@@ -50,7 +50,7 @@ export default function Page() {
     const {data: experiences} = query2
 
     const {mutate} = useMutation({
-        mutationFn: () => updateReview(old_review.id, review)
+        mutationFn: () => updateReview(old_review.id, {...review, dining_experience: checkboxes})
     })
 
     useEffect(() => {
