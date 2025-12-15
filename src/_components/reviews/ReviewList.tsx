@@ -36,7 +36,11 @@ export const ReviewList = ({review, id, reviewId} : ReviewProps) => {
             <p className='text-lg'>{review.restaurant_location.name}</p>
         </div>
         <p className='text-md'>{review.review}</p>
-        <p className='text-sm '>{review.user.username}</p>
+        <h3 className='text-2xl text-center md:mt-15 font-semibold tracking-wider'>Highlights</h3>
+        <section className='flex flex-col md:flex-row md:justify-around flex-wrap justify-center items-center'>
+          {review.dining_experience.map(e => <p key={e.id}>{e.description}</p>)}
+        </section>
+        <p className='text-sm self-end'>{review.user.username}</p>
         {review.is_owner? 
         <>
         <Button text='Edit' handleClick={() => {router.push(`/restaurants/${review.id}/edit_review`)}}/> 
