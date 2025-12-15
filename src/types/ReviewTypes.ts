@@ -9,7 +9,7 @@ export type ReviewType = {
         name: string
     }
     restaurant: {
-        id: number,
+        id: number
         name: string
     }
     user: {
@@ -17,7 +17,7 @@ export type ReviewType = {
     }
     is_owner: boolean
     dining_experience: DiningExperienceType[]
-
+    score: number
 }
 
 export type NewReviewType = {
@@ -25,11 +25,10 @@ export type NewReviewType = {
     restaurant: ParamValue | number
     location?: number
     score: number
-    dining_experience: {id: number, checked: boolean}[]
+    dining_experience: { id: number; checked: boolean }[]
 }
 
 export type UpdateReviewType = NewReviewType & {
     id: number
     restaurant_location: number
 }
-

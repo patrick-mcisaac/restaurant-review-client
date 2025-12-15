@@ -1,19 +1,20 @@
-
-import React from 'react'
+import React from "react"
 
 type HoursProps = {
-    city: string
+    city?: string
     info: string
-  
 }
 
-export default function Details({city, info} : HoursProps) {
-  return (
-    <div className='flex mt-5 flex-col'>
-        <h1 className='text-2xl '>{city}</h1>
-      
-        {info.split(',').map(i => <p key={i}>{i}</p>)}
-        
-    </div>
-  )
+export default function Details({ city, info }: HoursProps) {
+    return (
+        <div className="mt-5 flex flex-col">
+            {city ?
+                <h1 className="text-2xl">{city}</h1>
+            :   ""}
+
+            {info.split(",").map((i) => (
+                <p key={i}>{i}</p>
+            ))}
+        </div>
+    )
 }

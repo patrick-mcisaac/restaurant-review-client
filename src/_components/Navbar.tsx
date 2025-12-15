@@ -9,7 +9,7 @@ export const Navbar = () => {
     const {setToken, token} = useAuth()
 
     return (
-        <ul className="dark:bg-dark-black text-foreground  flex h-15 md:h-18 items-center justify-between px-5 md:px-10 md:text-2xl tracking-wider">
+        <ul className="dark:bg-dark-black text-foreground absolute w-full flex h-15 md:h-18 items-center justify-between px-5 md:px-10 md:text-2xl tracking-wider">
             <Link href={"/restaurants"} className="transition hover:scale-107">
                 <li>Restaurants</li>
             </Link>
