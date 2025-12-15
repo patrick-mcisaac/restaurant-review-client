@@ -1,12 +1,15 @@
 'use client'
 import Button from '@/_components/Button'
+import Checkbox from '@/_components/form/Checkbox'
 import TextArea from '@/_components/form/TextArea'
 import { Select } from '@/_components/searchbars/Select'
+import { getExperiences } from '@/data/experiences_requests'
 import { getRestaurantLocations } from '@/data/location_requests'
 import { createReview } from '@/data/review_requests'
-import { useMutation, useQuery } from '@tanstack/react-query'
+import { DiningExperienceType } from '@/types/DiningExperienceTypes'
+import { useMutation, useQueries, useQuery } from '@tanstack/react-query'
 import { useParams, useRouter } from 'next/navigation'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Rating } from 'react-simple-star-rating'
 
 
@@ -14,22 +17,42 @@ export default function Page() {
 
     const {id} = useParams()
     const [review, setReview] = useState({
-        
         review: '',
         restaurant: id,
         location: 0,
         score: 0
     })
 
+    const [checkboxes, setCheckboxes] = useState<{id: number, checked: boolean}[]>([])
+
     const router = useRouter()
 
-    const {data: locations, isSuccess} = useQuery({
-        queryKey: ['restaurantLocation', id],
-        queryFn: () => getRestaurantLocations(id)
+    const [query1, query2] = useQueries({
+        queries: [
+            {
+            queryKey: ['restaurantLocation', id],
+            queryFn: () => getRestaurantLocations(id)
+            },
+            {
+                queryKey: ['experiences'],
+                queryFn: getExperiences
+            }
+        ]
     })
 
+    const {data: locations, isSuccess} = query1
+    const {data: experiences} = query2
+
+    useEffect(() => {
+        if(experiences){
+
+            setCheckboxes(() => experiences.map((e: DiningExperienceType) => {return {id: e.id, checked: false}}))
+        }
+        },[experiences])
+
+
     const {data, mutate} = useMutation({
-        mutationFn:() => createReview(review),
+        mutationFn:() => createReview({...review, dining_experience: [...checkboxes]}),
         onSuccess: () => {
             router.replace(`/restaurants/${id}/reviews`)
         }
@@ -76,6 +99,13 @@ export default function Page() {
 
             <TextArea name='review' handleChange={handleChange} value={review.review} className='bg-light-grey lg:h-120 lg:w-200 text-foreground md:h-120 h-75 w-full'  />
         </fieldset>
+        <fieldset className='flex flex-col items-center'>
+            <h2 className='text-2xl'>Experience Highlights</h2>
+            <section className='flex max-w-200 items-center mt-4 justify-around flex-wrap gap-1'>
+
+                {experiences && experiences.map((e: DiningExperienceType) => <Checkbox setCheckboxes={setCheckboxes} key={e.id} experience={e}/>)}
+            </section>
+        </fieldset>
         <fieldset className='flex items-center justify-center'>
             <Rating
                 onClick={handleRatingChange}
@@ -83,7 +113,7 @@ export default function Page() {
                 size={24}
                 initialValue={0} />
         </fieldset>
-        <Button className='mt-10 lg:relative lg:w-200 w-full self-center  md:absolute md:bottom-10 md:w-[90%] ' text='Submit' preventDefault={true} handleClick={handleClick} />
+        <Button className=' lg:relative lg:w-200 w-full self-center  md:w-[90%] ' text='Submit' preventDefault={true} handleClick={handleClick} />
     </form>
   )
 }

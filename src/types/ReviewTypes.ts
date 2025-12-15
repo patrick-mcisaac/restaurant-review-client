@@ -25,6 +25,7 @@ export type NewReviewType = {
     restaurant: ParamValue | number
     location?: number
     score: number
+    dining_experience: {id: number, checked: boolean}[]
 }
 
 export type UpdateReviewType = NewReviewType & {
