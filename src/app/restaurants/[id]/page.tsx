@@ -20,20 +20,19 @@ export default function Page({ params }: { params: Promise<{ id: string }> }) {
 
     return isSuccess ?
             <div className="flex flex-col items-center pt-15">
-                <h1 className="bg-dark-black text-foreground absolute w-full pb-10 text-center text-4xl font-semibold tracking-wider text-shadow-lg md:text-6xl">
+                <h1 className="bg-dark-black text-foreground absolute z-1 w-full pb-15 text-center text-4xl font-semibold tracking-wider text-shadow-lg md:text-6xl">
                     {restaurant.name}
                 </h1>
 
-                <div className="h-screen overflow-hidden">
+                <div className="relative h-screen w-full overflow-hidden">
                     <Image
                         unoptimized={true}
                         alt={restaurant.name}
                         src={`http://localhost:8000${restaurant.image}`}
+                        fill
                         style={{
-                            width: "100vw",
+                            objectFit: "cover",
                         }}
-                        width={0}
-                        height={0}
                     />
                 </div>
                 <section className="bg-light-grey flex h-screen w-full items-center justify-center">

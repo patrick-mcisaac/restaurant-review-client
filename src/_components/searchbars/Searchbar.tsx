@@ -1,9 +1,11 @@
 "use client"
-import React from "react"
+import React, { SetStateAction, useEffect, useState } from "react"
 import { Input } from "../form/Input"
 import { Select } from "./Select"
-import { useQuery } from "@tanstack/react-query"
+import { useQuery, useQueryClient } from "@tanstack/react-query"
 import { getLocations } from "@/data/location_requests"
+import { usePathname, useRouter, useSearchParams } from "next/navigation"
+import { routerServerGlobal } from "next/dist/server/lib/router-utils/router-server-context"
 
 export const Searchbar = () => {
     const { data: locations, isSuccess } = useQuery({
@@ -11,17 +13,59 @@ export const Searchbar = () => {
         queryFn: getLocations,
     })
 
+    const pathName = usePathname()
+    const searchParams = useSearchParams()
+    const { replace } = useRouter()
+
+    const [searchTerm, setSearchTerm] = useState("")
+    const [locationFilter, setLocationFilter] = useState(0)
+    const [paramString, setParamString] = useState("")
+
+    const queryClient = useQueryClient()
+
     // TODO: functions for search and filter
     const handleChange = (
-        e: React.ChangeEvent<HTMLSelectElement | HTMLTextAreaElement>,
-    ) => {}
+        e: React.ChangeEvent<
+            HTMLSelectElement | HTMLInputElement | HTMLTextAreaElement
+        >,
+    ) => {
+        const name = e.target.name
+        const value = e.target.value
 
-    const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {}
+        switch (name) {
+            case "search":
+                setSearchTerm(value)
+                break
+            case "locations":
+                setLocationFilter(parseInt(value))
+                break
+            default:
+                break
+        }
+
+        const params = new URLSearchParams(searchParams.toString())
+        params.set(name, value)
+
+        setParamString(`${pathName}?${params.toString()}`)
+    }
+
+    useEffect(() => {
+        const timeOutId = setTimeout(() => {
+            replace(paramString)
+            // queryClient.invalidateQueries()
+            // queryClient.refetchQueries({
+            //     queryKey: ["restaurants", paramString],
+            // })
+        }, 300)
+
+        return () => clearTimeout(timeOutId)
+    }, [paramString])
+
     return (
         <>
             <Input
-                onChange={handleSearch}
-                value=""
+                onChange={handleChange}
+                value={searchTerm}
                 label={false}
                 type="text"
                 placeholder="search"
@@ -34,6 +78,7 @@ export const Searchbar = () => {
                     handleChange={handleChange}
                     name="locations"
                     locations={locations}
+                    value={locationFilter}
                 />
             :   ""}
         </>
