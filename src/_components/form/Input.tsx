@@ -24,7 +24,7 @@ export const Input = <T extends readonly string[] | string | number>({
     return (
         <fieldset className="flex w-full basis-0 flex-col gap-2">
             {label ?
-                <label className="text-xs" htmlFor={name}>
+                <label className="text-sm" htmlFor={name}>
                     {name.split("_").join(" ").toUpperCase()}:
                 </label>
             :   ""}
