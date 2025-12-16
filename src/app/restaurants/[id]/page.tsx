@@ -20,7 +20,7 @@ export default function Page({ params }: { params: Promise<{ id: string }> }) {
 
     return isSuccess ?
             <div className="flex flex-col items-center pt-15">
-                <h1 className="bg-dark-black text-foreground absolute z-1 w-full pb-15 text-center text-4xl font-semibold tracking-wider text-shadow-lg md:text-6xl">
+                <h1 className="dark:bg-dark-black bg-light-grey text-light dark:text-foreground absolute z-1 w-full pb-15 text-center text-4xl font-semibold tracking-wider text-shadow-lg md:text-6xl">
                     {restaurant.name}
                 </h1>
 
@@ -35,7 +35,7 @@ export default function Page({ params }: { params: Promise<{ id: string }> }) {
                         }}
                     />
                 </div>
-                <section className="bg-light-grey flex h-screen w-full items-center justify-center">
+                <section className="bg-light-grey dark:text-foreground text-background flex h-screen w-full items-center justify-center">
                     <p className="text-center text-2xl md:text-3xl lg:text-4xl">
                         {restaurant.description}
                     </p>

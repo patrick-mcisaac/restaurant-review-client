@@ -3,10 +3,21 @@
 :root {
     --background: #ededed;
     --foreground: #1e1e1e;
-    --light: #d4d4d2;
-  
+    --light: #b3b3b3;
+    --midground: #a8a8a8;
+    --light-grey: #4b4a4a;
+    --fill-color: #ffbc0b;
+}
 
-    
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background: #1e1e1e;
+        --foreground: #ededed;
+        --midground: #2e2e2e;
+        --light: #d4d2d2;
+        --light-grey: #3a3a3a;
+        --fill-color: #ffbc0b;
+    }
 }
 
 @theme {
@@ -17,20 +28,10 @@
     --color-light: var(--light);
 
     --color-dark-black: #111;
-    --color-light-grey: #3a3a3a;
+    --color-light-grey: var(--light-grey);
 
     --font-sans: var(--font-geist-sans);
     --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-    :root {
-        --background: #1e1e1e;
-        --foreground: #ededed;
-        --midground: #2e2e2e;
-        --light: #d4d2d2;
-        
-    }
 }
 
 body {
@@ -40,14 +41,10 @@ body {
 }
 
 @layer components {
-    .button{
-        background-color: var(--foreground);
-        color: var(--background);
+    .button {
         font-weight: 600;
-        padding: .3rem .7rem;
-        /* height: 2rem;
-        width: 5rem; */
-        border-radius: .2rem;
+        padding: 0.3rem 0.7rem;
+        border-radius: 0.2rem;
         text-align: center;
     }
 }

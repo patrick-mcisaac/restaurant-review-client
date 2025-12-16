@@ -7,7 +7,7 @@ import { getExperiences } from "@/data/experiences_requests"
 import { getRestaurantLocations } from "@/data/location_requests"
 import { createReview } from "@/data/review_requests"
 import { DiningExperienceType } from "@/types/DiningExperienceTypes"
-import { useMutation, useQueries, useQuery } from "@tanstack/react-query"
+import { useMutation, useQueries } from "@tanstack/react-query"
 import { useParams, useRouter } from "next/navigation"
 import React, { useEffect, useState } from "react"
 import { Rating } from "react-simple-star-rating"
@@ -99,7 +99,7 @@ export default function Page() {
                             handleChange={handleChange}
                             name="location"
                             locations={locations}
-                            className="text-foreground bg-light-grey cursor-pointer rounded-lg px-3 py-1"
+                            className="text-foreground bg-midground dark:bg-light-grey cursor-pointer rounded-lg px-3 py-1"
                         />
                     </fieldset>
                 :   ""}
@@ -108,7 +108,7 @@ export default function Page() {
                         name="review"
                         handleChange={handleChange}
                         value={review.review}
-                        className="bg-light-grey text-foreground h-75 w-full p-2 md:h-120 lg:h-120 lg:w-200"
+                        className="bg-midground dark:bg-light-grey text-foreground h-75 w-full p-2 md:h-120 lg:h-120 lg:w-200"
                     />
                 </fieldset>
             </section>
@@ -134,6 +134,8 @@ export default function Page() {
                         SVGclassName="inline-block"
                         size={24}
                         initialValue={0}
+                        SVGstrokeColor="var(--light-grey)"
+                        SVGstorkeWidth={1}
                     />
                 </fieldset>
                 <Button

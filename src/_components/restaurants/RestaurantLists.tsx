@@ -22,7 +22,6 @@ export const RestaurantLists = () => {
     })
     return isSuccess ?
             <div className="flex flex-col items-center gap-5 md:gap-20">
-                {/* <h1 className='text-5xl tracking-wider md:text-6xl'>Restaurants</h1> */}
                 <section className="flex flex-wrap items-start justify-around gap-x-10 gap-y-20 p-10">
                     {restaurants.map((r) => (
                         <Card

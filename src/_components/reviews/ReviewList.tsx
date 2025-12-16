@@ -31,7 +31,7 @@ export const ReviewList = ({ review, id, reviewId }: ReviewProps) => {
         },
     })
     return (
-        <div className="border-foreground bg-light-grey text-foreground flex w-full flex-col rounded-lg border p-3 md:w-[50%] md:p-10">
+        <div className="dark:border-foreground dark:bg-light-grey bg-midground text-foreground border-light flex w-full flex-col rounded-lg border p-3 md:w-[50%] md:p-10">
             <div className="flex flex-col justify-between text-center md:flex-row md:items-start">
                 <div>
                     <h1 className="text-xl font-semibold md:text-2xl">

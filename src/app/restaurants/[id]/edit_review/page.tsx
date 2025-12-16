@@ -126,7 +126,7 @@ export default function Page() {
                                 handleChange={handleChange}
                                 name="location"
                                 locations={locations}
-                                className="text-foreground bg-light-grey cursor-pointer rounded-lg px-3 py-1"
+                                className="text-foreground bg-midground dark:bg-light-grey cursor-pointer rounded-lg px-3 py-1"
                             />
                         </fieldset>
                     :   ""}
@@ -135,7 +135,7 @@ export default function Page() {
                             name="review"
                             handleChange={handleChange}
                             value={review.review}
-                            className="bg-light-grey text-foreground h-75 w-full p-2 md:h-120 lg:h-120 lg:w-200"
+                            className="bg-midground dark:bg-light-grey text-foreground h-75 w-full p-2 md:h-120 lg:h-120 lg:w-200"
                         />
                     </fieldset>
                 </section>
@@ -165,6 +165,8 @@ export default function Page() {
                             SVGclassName="inline-block"
                             size={24}
                             initialValue={review.score}
+                            SVGstrokeColor="var(--light-grey)"
+                            SVGstorkeWidth={1}
                         />
                     </fieldset>
                     <Button

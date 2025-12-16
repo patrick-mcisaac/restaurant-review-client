@@ -74,7 +74,7 @@ export const Searchbar = () => {
             />
             {isSuccess ?
                 <Select
-                    className="text-foreground bg-light-grey w-full cursor-pointer rounded-lg px-3 py-1 md:w-100"
+                    className="text-foreground bg-midground bg-light-grey w-full cursor-pointer rounded-lg px-3 py-1 md:w-100"
                     handleChange={handleChange}
                     name="locations"
                     locations={locations}
