@@ -21,8 +21,6 @@ export const Searchbar = () => {
     const [locationFilter, setLocationFilter] = useState(0)
     const [paramString, setParamString] = useState("")
 
-    const queryClient = useQueryClient()
-
     // TODO: functions for search and filter
     const handleChange = (
         e: React.ChangeEvent<
@@ -52,11 +50,7 @@ export const Searchbar = () => {
     useEffect(() => {
         const timeOutId = setTimeout(() => {
             replace(paramString)
-            // queryClient.invalidateQueries()
-            // queryClient.refetchQueries({
-            //     queryKey: ["restaurants", paramString],
-            // })
-        }, 300)
+        }, 150)
 
         return () => clearTimeout(timeOutId)
     }, [paramString])

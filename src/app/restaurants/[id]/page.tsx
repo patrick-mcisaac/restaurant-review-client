@@ -35,7 +35,7 @@ export default function Page({ params }: { params: Promise<{ id: string }> }) {
                         }}
                     />
                 </div>
-                <section className="bg-light-grey dark:text-foreground text-background flex h-screen w-full items-center justify-center">
+                <section className="bg-light-grey dark:text-foreground text-background flex h-[105vh] w-full items-center justify-center">
                     <p className="text-center text-2xl md:text-3xl lg:text-4xl">
                         {restaurant.description}
                     </p>

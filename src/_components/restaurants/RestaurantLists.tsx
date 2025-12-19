@@ -1,14 +1,9 @@
 "use client"
-import { RestaurantType } from "@/types/RestaurantTypes"
-import React from "react"
+
 import Card from "../Card"
 import { useQuery } from "@tanstack/react-query"
 import { usePathname, useSearchParams } from "next/navigation"
 import { getRestaurants } from "@/data/restaurant_fetches"
-
-// type RestaurantProps = {
-//     restaurants: RestaurantType[]
-// }
 
 export const RestaurantLists = () => {
     const pathName = usePathname()
