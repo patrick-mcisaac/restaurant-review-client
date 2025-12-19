@@ -50,7 +50,7 @@ export default function Page({ params }: { params: Promise<{ id: string }> }) {
 
     return isSuccess ?
             <div className="flex flex-col items-center">
-                <h1 className="dark:bg-dark-black bg-light-grey text-light dark:text-foreground absolute z-1 mt-15 w-full pb-15 text-center text-4xl font-semibold tracking-wider text-shadow-lg md:text-6xl">
+                <h1 className="dark:bg-dark-black bg-light-grey text-light dark:text-foreground absolute z-1 mt-23 w-full pt-0 pb-5 text-center text-4xl font-semibold tracking-wider text-shadow-lg md:mt-25 md:pt-0 md:text-6xl">
                     {restaurant.name}
                 </h1>
                 <div

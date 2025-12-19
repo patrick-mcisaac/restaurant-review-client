@@ -144,7 +144,7 @@ export default function Page() {
             <form className="flex flex-col justify-start">
                 <section
                     ref={reviewSection}
-                    className="flex h-screen flex-col justify-evenly px-5 pt-10"
+                    className="flex h-screen flex-col justify-evenly px-5 pt-20"
                 >
                     <h1 className="mt-5 text-center text-5xl">Review</h1>
                     {locationSuccess ?
@@ -174,7 +174,7 @@ export default function Page() {
                 </section>
                 <section
                     ref={rateSection}
-                    className="flex h-screen flex-col justify-evenly p-5"
+                    className="relative flex h-screen flex-col justify-evenly p-5"
                 >
                     <fieldset className="flex flex-col items-center gap-10">
                         <h2 className="text-center text-3xl font-semibold">
@@ -206,7 +206,7 @@ export default function Page() {
                         />
                     </fieldset>
                     <Button
-                        className="mt-10 w-full self-center md:absolute md:bottom-10 md:w-[90%] lg:relative lg:w-200"
+                        className="mt-10 w-full self-center md:w-[90%] lg:relative lg:w-200"
                         text="Submit"
                         preventDefault={true}
                         handleClick={handleClick}
