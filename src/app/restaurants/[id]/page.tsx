@@ -1,30 +1,62 @@
 "use client"
 import Button from "@/_components/Button"
 import Details from "@/_components/restaurants/Details"
+import ScrollButton from "@/_components/ScrollButton"
 import { getRestaurantById } from "@/data/restaurant_fetches"
-import { useQuery, useQueryClient } from "@tanstack/react-query"
+import { useQuery } from "@tanstack/react-query"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
-import React, { use } from "react"
+import React, { use, useRef } from "react"
 import { Rating } from "react-simple-star-rating"
 
 export default function Page({ params }: { params: Promise<{ id: string }> }) {
     const router = useRouter()
-    // const queryClient = useQueryClient()
+
     const { id } = use(params)
+
+    const topSection = useRef<HTMLDivElement | null>(null)
+    const descriptionSection = useRef<HTMLDivElement | null>(null)
+    const locationSection = useRef<HTMLDivElement | null>(null)
 
     const { data: restaurant, isSuccess } = useQuery({
         queryKey: ["restaurant", id],
         queryFn: () => getRestaurantById(id),
     })
 
+    const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+        const name = e.currentTarget.name
+
+        switch (name) {
+            case "description":
+                descriptionSection.current?.scrollIntoView({
+                    behavior: "smooth",
+                })
+                break
+            case "location":
+                locationSection.current?.scrollIntoView({
+                    behavior: "smooth",
+                })
+                break
+            case "top":
+                console.log(topSection.current)
+                topSection.current?.scrollIntoView({
+                    behavior: "smooth",
+                })
+                break
+            default:
+                break
+        }
+    }
+
     return isSuccess ?
-            <div className="flex flex-col items-center pt-15">
-                <h1 className="dark:bg-dark-black bg-light-grey text-light dark:text-foreground absolute z-1 w-full pb-15 text-center text-4xl font-semibold tracking-wider text-shadow-lg md:text-6xl">
+            <div className="flex flex-col items-center">
+                <h1 className="dark:bg-dark-black bg-light-grey text-light dark:text-foreground absolute z-1 mt-15 w-full pb-15 text-center text-4xl font-semibold tracking-wider text-shadow-lg md:text-6xl">
                     {restaurant.name}
                 </h1>
-
-                <div className="relative h-screen w-full overflow-hidden">
+                <div
+                    ref={topSection}
+                    className="flex min-h-screen w-full justify-center overflow-hidden"
+                >
                     <Image
                         unoptimized={true}
                         alt={restaurant.name}
@@ -34,14 +66,30 @@ export default function Page({ params }: { params: Promise<{ id: string }> }) {
                             objectFit: "cover",
                         }}
                     />
+                    <ScrollButton
+                        className="z-1 mb-15 self-end"
+                        name="description"
+                        handleClick={handleClick}
+                    />
                 </div>
-                <section className="bg-light-grey dark:text-foreground text-background flex h-[105vh] w-full items-center justify-center">
-                    <p className="text-center text-2xl md:text-3xl lg:text-4xl">
+                <section
+                    ref={descriptionSection}
+                    className="bg-light-grey dark:text-foreground text-background flex h-screen w-full flex-wrap items-end justify-center gap-0 pt-15 pb-15"
+                >
+                    <p className="w-full text-center text-2xl md:text-3xl lg:text-4xl">
                         {restaurant.description}
                     </p>
+                    <ScrollButton
+                        className=""
+                        name="location"
+                        handleClick={handleClick}
+                    />
                 </section>
 
-                <div className="flex h-screen flex-col items-center justify-between p-30">
+                <div
+                    ref={locationSection}
+                    className="relative flex h-screen flex-col items-center justify-between p-10 pb-2 md:p-30"
+                >
                     <h2 className="w-full text-center text-5xl font-semibold tracking-wider lg:text-6xl">
                         Locations
                     </h2>
@@ -71,8 +119,8 @@ export default function Page({ params }: { params: Promise<{ id: string }> }) {
                             )
                         })}
                     </div>
-                    <section className="flex w-full items-end justify-around">
-                        <div className="mt-5 flex items-center justify-end">
+                    <section className="mb-0 flex w-full items-end justify-around md:mb-10">
+                        <div className="flex items-center justify-end">
                             <Button
                                 text="Review"
                                 handleClick={() => {
@@ -80,7 +128,7 @@ export default function Page({ params }: { params: Promise<{ id: string }> }) {
                                 }}
                             />
                         </div>
-                        <div className="mt-5 flex items-center justify-end">
+                        <div className="flex items-center justify-end">
                             <Button
                                 text="Our Reviews"
                                 handleClick={() => {
@@ -89,6 +137,12 @@ export default function Page({ params }: { params: Promise<{ id: string }> }) {
                             />
                         </div>
                     </section>
+                    <ScrollButton
+                        className=""
+                        name="top"
+                        up={true}
+                        handleClick={handleClick}
+                    />
                 </div>
             </div>
         :   ""
