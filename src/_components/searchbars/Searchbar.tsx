@@ -50,7 +50,7 @@ export const Searchbar = () => {
     useEffect(() => {
         const timeOutId = setTimeout(() => {
             replace(paramString)
-        }, 150)
+        }, 200)
 
         return () => clearTimeout(timeOutId)
     }, [paramString])

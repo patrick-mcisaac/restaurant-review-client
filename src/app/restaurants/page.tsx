@@ -1,7 +1,6 @@
 "use client"
 import { RestaurantLists } from "@/_components/restaurants/RestaurantLists"
 import { Searchbar } from "@/_components/searchbars/Searchbar"
-import { Suspense } from "react"
 
 export default function Page() {
     return (

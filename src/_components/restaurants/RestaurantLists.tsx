@@ -4,19 +4,13 @@ import Card from "../Card"
 import { useQuery } from "@tanstack/react-query"
 import { usePathname, useSearchParams } from "next/navigation"
 import { getRestaurants } from "@/data/restaurant_fetches"
-import { Skeleton } from "@mui/material"
-import Loading from "@/app/restaurants/Loading"
 
 export const RestaurantLists = () => {
     const pathName = usePathname()
     const searchParams = useSearchParams()
     const query = `${pathName}?${searchParams.toString()}`
 
-    const {
-        data: restaurants,
-        isSuccess,
-        isPending,
-    } = useQuery({
+    const { data: restaurants, isSuccess } = useQuery({
         queryKey: ["restaurants", query],
         queryFn: () => getRestaurants(query),
         staleTime: 5 * 60000,
@@ -25,10 +19,6 @@ export const RestaurantLists = () => {
     return (
         <div className="flex flex-col items-center gap-5 md:gap-20">
             <section className="flex flex-wrap items-start justify-around gap-x-10 gap-y-20 p-10">
-                {isPending ?
-                    <Loading />
-                :   ""}
-
                 {isSuccess ?
                     restaurants.map((r) => (
                         <Card
