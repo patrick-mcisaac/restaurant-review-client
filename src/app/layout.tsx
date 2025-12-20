@@ -19,7 +19,7 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-    title: "Bite",
+    title: "Bite by Bite",
     description: "Review and rate your favorite restaurants",
 }
 

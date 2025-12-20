@@ -31,6 +31,8 @@ export default function Page() {
     const reviewSection = useRef<HTMLDivElement | null>(null)
     const rateSection = useRef<HTMLDivElement | null>(null)
 
+    const textAreaRef = useRef<HTMLTextAreaElement | null>(null)
+
     const [query1, query2] = useQueries({
         queries: [
             {
@@ -132,6 +134,7 @@ export default function Page() {
                 :   ""}
                 <fieldset className="flex justify-center">
                     <TextArea
+                        ref={textAreaRef}
                         name="review"
                         handleChange={handleChange}
                         value={review.review}

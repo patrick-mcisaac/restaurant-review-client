@@ -6,7 +6,7 @@ import { getRestaurantById } from "@/data/restaurant_fetches"
 import { useQuery } from "@tanstack/react-query"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
-import React, { use, useRef } from "react"
+import React, { Suspense, use, useRef } from "react"
 import { Rating } from "react-simple-star-rating"
 
 export default function Page({ params }: { params: Promise<{ id: string }> }) {
@@ -55,7 +55,7 @@ export default function Page({ params }: { params: Promise<{ id: string }> }) {
                 </h1>
                 <div
                     ref={topSection}
-                    className="flex min-h-screen w-full justify-center overflow-hidden"
+                    className="relative flex min-h-screen w-full justify-center overflow-hidden"
                 >
                     <Image
                         unoptimized={true}
@@ -64,8 +64,12 @@ export default function Page({ params }: { params: Promise<{ id: string }> }) {
                         fill
                         style={{
                             objectFit: "cover",
+                            animation: "fade-in",
+                            animationDuration: "2s",
+                            animationTimingFunction: "ease-out",
                         }}
                     />
+
                     <ScrollButton
                         className="z-1 mb-15 self-end"
                         name="description"
