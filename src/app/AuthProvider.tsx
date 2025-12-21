@@ -8,16 +8,11 @@ export const AuthContext = createContext<AuthProviderType | undefined>(
 )
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-    const [token, setToken] = useState<string>("")
+    const [token, setToken] = useState<string | null>(
+        localStorage.getItem("token"),
+    )
     const router = useRouter()
     const pathname = usePathname()
-
-    useEffect(() => {
-        const checkToken = localStorage.getItem("token")
-        if (checkToken) {
-            setToken(checkToken)
-        }
-    }, [])
 
     useEffect(() => {
         const authPaths = ["/login", "/register"]
@@ -25,7 +20,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         if (!authPaths.includes(pathname) && !localStorage.getItem("token")) {
             router.replace("/login")
         }
-    }, [token, pathname])
+    }, [pathname])
 
     return (
         <AuthContext.Provider value={{ token, setToken }}>

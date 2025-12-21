@@ -3,6 +3,7 @@
 import Button from "@/_components/form/Button"
 import { Input } from "@/_components/form/Input"
 import { useAuth } from "@/app/AuthProvider"
+
 import { register } from "@/data/auth_requests"
 import { RegisterType } from "@/types/AuthType"
 import { useMutation } from "@tanstack/react-query"
@@ -10,8 +11,9 @@ import { useRouter } from "next/navigation"
 import React, { useState } from "react"
 
 export default function Page() {
-    const { setToken } = useAuth()
     const router = useRouter()
+
+    const { setToken } = useAuth()
 
     const { data, mutate } = useMutation({
         mutationFn: (data: RegisterType) => register(data),

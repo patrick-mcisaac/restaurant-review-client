@@ -15,8 +15,8 @@ export default function Page() {
     const { data, mutate } = useMutation({
         mutationFn: (userLogin: LoginType) => login(userLogin),
         onSuccess: (data) => {
-            setToken(data.token)
             localStorage.setItem("token", data.token)
+            setToken(data.token)
             router.replace("/")
         },
     })
