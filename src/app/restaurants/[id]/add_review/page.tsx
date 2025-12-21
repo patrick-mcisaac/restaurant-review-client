@@ -30,7 +30,6 @@ export default function Page() {
 
     const reviewSection = useRef<HTMLDivElement | null>(null)
     const rateSection = useRef<HTMLDivElement | null>(null)
-
     const textAreaRef = useRef<HTMLTextAreaElement | null>(null)
 
     const [query1, query2] = useQueries({
@@ -47,17 +46,17 @@ export default function Page() {
     })
 
     const { data: locations, isSuccess } = query1
-    const { data: experiences } = query2
+    const { data: experiences, isSuccess: exSuccess } = query2
 
     useEffect(() => {
-        if (experiences) {
+        if (experiences && exSuccess) {
             setCheckboxes(() =>
                 experiences.map((e: DiningExperienceType) => {
                     return { id: e.id, checked: false }
                 }),
             )
         }
-    }, [experiences])
+    }, [experiences, exSuccess])
 
     const { data, mutate } = useMutation({
         mutationFn: () =>
