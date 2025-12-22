@@ -13,7 +13,7 @@ export default function Page() {
         queryFn: () => getRestaurantReviews(id),
     })
     return isSuccess ?
-            <div className="flex h-screen flex-col items-center justify-start gap-10 pt-25">
+            <div className="flex h-screen flex-col items-center justify-start gap-10 pt-40">
                 {reviews.map((review: ReviewType) => (
                     <ReviewList
                         key={review.id}

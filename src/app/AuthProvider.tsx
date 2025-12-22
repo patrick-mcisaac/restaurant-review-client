@@ -8,11 +8,13 @@ export const AuthContext = createContext<AuthProviderType | undefined>(
 )
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-    const [token, setToken] = useState<string | null>(
-        localStorage.getItem("token"),
-    )
+    const [token, setToken] = useState<string | null>(null)
     const router = useRouter()
     const pathname = usePathname()
+
+    useEffect(() => {
+        setToken(localStorage.getItem("token"))
+    }, [])
 
     useEffect(() => {
         const authPaths = ["/login", "/register"]

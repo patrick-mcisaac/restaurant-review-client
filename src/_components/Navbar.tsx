@@ -17,33 +17,37 @@ export const Navbar = () => {
                         </li>
                     </Link>
 
-                    <div>
-                        <Link
-                            href={"/login"}
-                            onClick={() => {
-                                setToken("")
-                                localStorage.removeItem("token")
-                            }}
-                            className="transition hover:scale-107"
-                        >
-                            <li className="text-2xl md:text-4xl md:font-semibold">
-                                Logout
-                            </li>
-                        </Link>
-                    </div>
+                    <Link
+                        href={"/login"}
+                        onClick={() => {
+                            setToken("")
+                            localStorage.removeItem("token")
+                        }}
+                        className="transition hover:scale-107"
+                    >
+                        <li className="text-2xl md:text-4xl md:font-semibold">
+                            Logout
+                        </li>
+                    </Link>
                 </>
-            :   <div className="flex w-full justify-end gap-5 md:gap-10">
-                    <Link href={"/login"}>
+            :   <>
+                    <Link
+                        href={"/login"}
+                        className="transition hover:scale-107"
+                    >
                         <li className="text-2xl md:text-4xl md:font-semibold">
                             Login
                         </li>
                     </Link>
-                    <Link href={"/register"}>
+                    <Link
+                        href={"/register"}
+                        className="transition hover:scale-107"
+                    >
                         <li className="text-2xl md:text-4xl md:font-semibold">
                             Register
                         </li>
                     </Link>
-                </div>
+                </>
             }
         </ul>
     )

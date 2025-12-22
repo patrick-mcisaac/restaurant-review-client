@@ -26,6 +26,7 @@ export default function Page() {
 
     const reviewSection = useRef<HTMLDivElement | null>(null)
     const rateSection = useRef<HTMLDivElement | null>(null)
+    const textAreaRef = useRef<HTMLTextAreaElement | null>(null)
 
     const [checkboxes, setCheckboxes] = useState<
         { id: number; checked: boolean }[]
@@ -148,7 +149,7 @@ export default function Page() {
                 >
                     <h1 className="mt-5 text-center text-5xl">Review</h1>
                     {locationSuccess ?
-                        <fieldset className="flex justify-end">
+                        <fieldset className="flex justify-center">
                             <Select
                                 value={review.restaurant_location}
                                 handleChange={handleChange}
@@ -160,6 +161,7 @@ export default function Page() {
                     :   ""}
                     <fieldset className="flex justify-center">
                         <TextArea
+                            ref={textAreaRef}
                             name="review"
                             handleChange={handleChange}
                             value={review.review}

@@ -14,6 +14,7 @@ export const RestaurantLists = () => {
         queryKey: ["restaurants", query],
         queryFn: () => getRestaurants(query),
         staleTime: 5 * 60000,
+        enabled: !!query,
     })
 
     return (

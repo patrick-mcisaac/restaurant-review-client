@@ -122,7 +122,7 @@ export default function Page() {
             >
                 <h1 className="mt-5 text-center text-5xl">Review</h1>
                 {isSuccess ?
-                    <fieldset className="flex justify-end">
+                    <fieldset className="flex justify-center">
                         <Select
                             handleChange={handleChange}
                             name="location"

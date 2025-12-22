@@ -38,7 +38,6 @@ export default function Page({ params }: { params: Promise<{ id: string }> }) {
                 })
                 break
             case "top":
-                console.log(topSection.current)
                 topSection.current?.scrollIntoView({
                     behavior: "smooth",
                 })
@@ -50,7 +49,7 @@ export default function Page({ params }: { params: Promise<{ id: string }> }) {
 
     return isSuccess ?
             <div className="flex flex-col items-center">
-                <h1 className="dark:bg-dark-black bg-light-grey text-light dark:text-foreground absolute z-1 mt-23 w-full pt-0 pb-5 text-center text-4xl font-semibold tracking-wider text-shadow-lg md:mt-25 md:pt-0 md:text-6xl">
+                <h1 className="dark:bg-dark-black bg-light-grey text-light dark:text-foreground absolute z-1 mt-23 w-full pt-0 pb-8 text-center text-4xl font-semibold tracking-wider text-shadow-lg md:mt-25 md:pt-0 md:text-6xl">
                     {restaurant.name}
                 </h1>
                 <div
@@ -126,6 +125,7 @@ export default function Page({ params }: { params: Promise<{ id: string }> }) {
                     <section className="mb-0 flex w-full items-end justify-around md:mb-10">
                         <div className="flex items-center justify-end">
                             <Button
+                                className="h-15 w-45 rounded-2xl transition hover:scale-110"
                                 text="Review"
                                 handleClick={() => {
                                     router.push(`/restaurants/${id}/add_review`)
@@ -134,6 +134,7 @@ export default function Page({ params }: { params: Promise<{ id: string }> }) {
                         </div>
                         <div className="flex items-center justify-end">
                             <Button
+                                className="h-15 w-45 rounded-2xl transition hover:scale-110"
                                 text="Our Reviews"
                                 handleClick={() => {
                                     router.push(`/restaurants/${id}/reviews`)
