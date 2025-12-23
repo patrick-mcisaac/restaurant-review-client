@@ -23,7 +23,7 @@ export default function LocationSection({
     return (
         <div
             ref={locationSection}
-            className="relative flex h-screen flex-col items-center justify-between p-10 pb-2 md:p-30"
+            className="relative flex min-h-screen flex-col items-center justify-between p-10 pb-2 md:p-30"
         >
             <h2 className="w-full text-center text-5xl font-semibold tracking-wider lg:text-6xl">
                 Locations
@@ -49,10 +49,10 @@ export default function LocationSection({
                     )
                 })}
             </div>
-            <section className="mb-0 flex w-full items-end justify-around md:mb-10">
+            <section className="mb-0 flex w-full items-end justify-around md:mb-10 md:flex-row">
                 <div className="flex items-center justify-end">
                     <Button
-                        className="h-15 w-45 rounded-2xl transition hover:scale-110"
+                        className="h-8 w-25 rounded-2xl transition hover:scale-110 md:h-15 md:w-45"
                         text="Review"
                         handleClick={() => {
                             router.push(`/restaurants/${id}/add_review`)
@@ -61,7 +61,7 @@ export default function LocationSection({
                 </div>
                 <div className="flex items-center justify-end">
                     <Button
-                        className="h-15 w-45 rounded-2xl transition hover:scale-110"
+                        className="h-8 rounded-2xl transition hover:scale-110 md:h-15 md:w-45"
                         text="Our Reviews"
                         handleClick={() => {
                             router.push(`/restaurants/${id}/reviews`)
@@ -70,7 +70,7 @@ export default function LocationSection({
                 </div>
             </section>
             <ScrollButton
-                className=""
+                className="mb-5 md:mb-0"
                 name="top"
                 up={true}
                 handleClick={handleClick}

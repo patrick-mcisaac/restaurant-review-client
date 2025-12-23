@@ -33,7 +33,7 @@ export default function ImageSection({
             />
 
             <ScrollButton
-                className="z-1 mb-15 self-end"
+                className="z-1 mb-5 self-end md:mb-15"
                 name="description"
                 handleClick={handleClick}
             />

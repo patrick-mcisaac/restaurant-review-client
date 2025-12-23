@@ -18,12 +18,12 @@ export default function ScrollButton({
 }: ScrollProps) {
     return (
         <button
-            className={`${className} bg-midground dark:bg-background text-foreground flex h-20 w-15 cursor-pointer items-center justify-center rounded-2xl border-1 transition hover:scale-115`}
+            className={`${className} bg-midground dark:bg-background text-foreground flex h-10 w-10 cursor-pointer items-center justify-center rounded-2xl border-1 transition hover:scale-115 md:h-20 md:w-15`}
             name={name}
             onClick={handleClick}
         >
             <FontAwesomeIcon
-                className="text-4xl"
+                className="text-2xl md:text-4xl"
                 icon={up ? faArrowUp : faArrowDown}
             />
         </button>
