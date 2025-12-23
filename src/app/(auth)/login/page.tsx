@@ -6,11 +6,12 @@ import { login } from "@/data/auth_requests"
 import { LoginType } from "@/types/AuthType"
 import { useMutation } from "@tanstack/react-query"
 import { useRouter } from "next/navigation"
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 export default function Page() {
     const { setToken } = useAuth()
     const router = useRouter()
+    const usernameRef = useRef<HTMLInputElement | null>(null)
 
     const { data, mutate } = useMutation({
         mutationFn: (userLogin: LoginType) => login(userLogin),
@@ -20,6 +21,10 @@ export default function Page() {
             router.replace("/")
         },
     })
+
+    useEffect(() => {
+        usernameRef.current?.focus()
+    }, [])
 
     const [userLogin, setUserLogin] = useState<LoginType>({
         username: "",
@@ -57,6 +62,7 @@ export default function Page() {
                 onChange={handleChange}
                 name="username"
                 className="bg-midground rounded-2xl p-[.2rem_1rem] text-xl"
+                ref={usernameRef}
             />
             <Input
                 label={true}

@@ -10,9 +10,10 @@ type InputProps<T> = {
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
     label?: boolean
     className?: string
+    ref?: React.RefObject<HTMLInputElement | null>
 }
 
-export const Input = <T extends readonly string[] | string | number>({
+export const Input = <T extends string | number>({
     type,
     placeholder,
     name,
@@ -20,6 +21,7 @@ export const Input = <T extends readonly string[] | string | number>({
     onChange,
     label,
     className,
+    ref,
 }: InputProps<T>) => {
     return (
         <fieldset className="flex w-full basis-0 flex-col gap-2">
@@ -36,6 +38,7 @@ export const Input = <T extends readonly string[] | string | number>({
                 type={type}
                 placeholder={placeholder}
                 name={name}
+                ref={ref}
             />
         </fieldset>
     )

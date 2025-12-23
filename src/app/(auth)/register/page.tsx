@@ -8,12 +8,17 @@ import { register } from "@/data/auth_requests"
 import { RegisterType } from "@/types/AuthType"
 import { useMutation } from "@tanstack/react-query"
 import { useRouter } from "next/navigation"
-import React, { useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 
 export default function Page() {
     const router = useRouter()
 
     const { setToken } = useAuth()
+    const firstNameRef = useRef<HTMLInputElement | null>(null)
+
+    useEffect(() => {
+        firstNameRef.current?.focus()
+    }, [])
 
     const { data, mutate } = useMutation({
         mutationFn: (data: RegisterType) => register(data),
@@ -74,6 +79,7 @@ export default function Page() {
                 onChange={handleChange}
                 name="first_name"
                 className="bg-midground rounded-2xl p-[.2rem_1rem] text-xl"
+                ref={firstNameRef}
             />
 
             <Input
