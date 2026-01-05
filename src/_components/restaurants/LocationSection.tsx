@@ -23,7 +23,7 @@ export default function LocationSection({
     return (
         <div
             ref={locationSection}
-            className="relative flex min-h-screen w-screen flex-col items-center justify-between p-10 pb-2 md:p-30"
+            className="relative flex min-h-screen w-[90%] flex-col items-center justify-between p-10 pb-2 md:p-30"
         >
             <h2 className="w-full text-center text-5xl font-semibold tracking-wider lg:text-6xl">
                 Locations
@@ -38,7 +38,7 @@ export default function LocationSection({
                                 readonly
                                 initialValue={location.location_average_rating}
                             />
-                            <div className="flex w-full items-end justify-between gap-20 md:flex-col md:items-start md:gap-2">
+                            <div className="flex w-full items-end justify-center gap-20 md:flex-col md:items-start md:gap-2">
                                 <Details
                                     city={location.city.name}
                                     info={location.address}
