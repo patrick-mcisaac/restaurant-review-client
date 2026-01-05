@@ -23,7 +23,7 @@ export default function LocationSection({
     return (
         <div
             ref={locationSection}
-            className="relative flex min-h-screen flex-col items-center justify-between p-10 pb-2 md:p-30"
+            className="relative flex min-h-screen w-screen flex-col items-center justify-between p-10 pb-2 md:p-30"
         >
             <h2 className="w-full text-center text-5xl font-semibold tracking-wider lg:text-6xl">
                 Locations
@@ -49,7 +49,7 @@ export default function LocationSection({
                     )
                 })}
             </div>
-            <section className="mb-0 flex w-full items-end justify-around md:mb-10 md:flex-row">
+            <section className="mb-0 flex w-full items-end justify-center gap-20 md:mb-10 md:flex-row">
                 <div className="flex items-center justify-end">
                     <Button
                         className="h-8 w-25 rounded-2xl transition hover:scale-110 md:h-15 md:w-45"
