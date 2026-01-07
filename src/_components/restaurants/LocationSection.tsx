@@ -52,7 +52,7 @@ export default function LocationSection({
             <section className="mb-0 flex w-full items-end justify-center gap-20 md:mb-10 md:flex-row">
                 <div className="flex items-center justify-end">
                     <Button
-                        className="h-8 w-25 rounded-2xl transition hover:scale-110 md:h-15 md:w-45"
+                        className="h-8 w-25 rounded-2xl transition hover:scale-110 md:h-15 md:w-45 md:font-semibold"
                         text="Review"
                         handleClick={() => {
                             router.push(`/restaurants/${id}/add_review`)
@@ -61,7 +61,7 @@ export default function LocationSection({
                 </div>
                 <div className="flex items-center justify-end">
                     <Button
-                        className="h-8 rounded-2xl transition hover:scale-110 md:h-15 md:w-45"
+                        className="h-8 w-25 rounded-2xl transition hover:scale-110 md:h-15 md:w-45 md:font-semibold"
                         text="Our Reviews"
                         handleClick={() => {
                             router.push(`/restaurants/${id}/reviews`)

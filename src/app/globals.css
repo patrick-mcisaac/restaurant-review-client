@@ -42,8 +42,6 @@ body {
 
 @layer components {
     .button {
-        font-weight: 600;
-        padding: 0.3rem 0.7rem;
         border-radius: 0.2rem;
         text-align: center;
     }
