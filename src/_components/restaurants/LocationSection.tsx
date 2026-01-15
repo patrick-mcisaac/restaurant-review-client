@@ -49,7 +49,7 @@ export default function LocationSection({
                     )
                 })}
             </div>
-            <section className="mb-0 flex w-full items-end justify-center gap-20 md:mb-10 md:flex-row">
+            <section className="mb-0 flex w-full items-end justify-center gap-20 md:mb-10 md:flex-row md:gap-50">
                 <div className="flex items-center justify-end">
                     <Button
                         className="h-8 w-25 rounded-2xl transition hover:scale-110 md:h-15 md:w-45 md:font-semibold"
