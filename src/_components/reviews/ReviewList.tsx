@@ -7,6 +7,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { deleteReview } from "@/data/review_requests"
 import { ParamValue } from "next/dist/server/request/params"
 import { Rating } from "react-simple-star-rating"
+import formatDate from "@/utility/formatDate"
 
 type ReviewProps = {
     review: ReviewType
@@ -58,6 +59,7 @@ export const ReviewList = ({ review, id, reviewId }: ReviewProps) => {
                 ))}
             </section>
             <p className="mt-10 self-end text-sm">{review.user.username}</p>
+            <p className="self-end text-sm"> {formatDate(review.created_at)}</p>
             {review.is_owner ?
                 <div className="mt-10 flex flex-col gap-5">
                     <Button

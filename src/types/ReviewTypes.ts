@@ -18,6 +18,7 @@ export type ReviewType = {
     is_owner: boolean
     dining_experience: DiningExperienceType[]
     score: number
+    created_at: string
 }
 
 export type NewReviewType = {
