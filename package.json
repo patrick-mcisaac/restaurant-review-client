@@ -20,6 +20,7 @@
     "react-simple-star-rating": "^5.1.7"
   },
   "devDependencies": {
+    "@playwright/test": "^1.58.2",
     "@tailwindcss/postcss": "^4",
     "@tanstack/eslint-plugin-query": "^5.91.2",
     "@types/node": "^20",
